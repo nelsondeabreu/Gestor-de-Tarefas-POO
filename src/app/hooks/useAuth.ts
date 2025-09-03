@@ -1,4 +1,5 @@
 import { AuthContext } from '../context/AuthContext';
+import { UserLogin } from '../context/AuthContext';
 
 interface DataForm{
     nome: string
@@ -16,10 +17,18 @@ export const handleRegister = async (data: DataForm) => {
     }
 };
 
-export const handleLogin = async (data: DataForm) => {
+export const handleLogin = async (data: UserLogin) => {
     try {
         await useAuth.login(data);
     } catch (error) {
         throw new Error(`Erro ao fazer login: ${error as string}`);
     }
 }
+
+export const handleLogout = async () => {
+    try {
+        await useAuth.logout();
+    } catch (error) {
+        throw new Error(`Erro ao fazer logout: ${error as string}`);
+    }
+};

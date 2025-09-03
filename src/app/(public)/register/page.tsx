@@ -3,22 +3,21 @@ import { Facebook, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { handleRegister } from "@/app/hooks/useAuth";
- 
-type FormData = {
-  nome: string
-  password: string;
-  email: string;
-};
+import { User } from "@/app/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormData>();
+  } = useForm<User>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<User> = (data) => {
     handleRegister(data);
+    router.push('/sign-in');
   };
 
   return (

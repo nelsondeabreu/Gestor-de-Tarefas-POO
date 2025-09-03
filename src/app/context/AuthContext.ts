@@ -6,17 +6,17 @@ interface AuthContextType {
     login: (user: UserLogin) => Promise<void>;
     logout: () => Promise<void>;
 }
-interface User{
+export interface User{
     nome: string
     email: string
     password: string
 }
-interface UserLogin{
+export interface UserLogin{
     email: string
     password: string
 }
 class AuthContext implements AuthContextType {
-    constructor(private user: User | null = null) { this.user = user; }
+    constructor(public user: User | null = null) { this.user = user; }
 
     register(user: User){
         const stored = localStorage.getItem("tb_user");
@@ -44,7 +44,7 @@ class AuthContext implements AuthContextType {
     logout(): Promise<void> {
         this.user = null;
         localStorage.removeItem("userLogged");
-         Cookies.remove("authToken");
+        Cookies.remove("authToken");
         return Promise.resolve();
     }
 }

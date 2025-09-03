@@ -2,26 +2,21 @@
 import { handleLogin } from "@/app/hooks/useAuth";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useRouter } from "next/navigation";
-
-type FormData = {
-  password: string;
-  email: string;
-};
+import { UserLogin } from "@/app/context/AuthContext";
 
 export default function SignInPage() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormData>();
-  
+  } = useForm<UserLogin>();
+
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<UserLogin> = (data) => {
     handleLogin(data);
-    router.push("/dashboard");
+    router.push("/");
   };
 
   return (
