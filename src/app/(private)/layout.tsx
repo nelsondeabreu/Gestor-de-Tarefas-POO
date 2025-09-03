@@ -6,7 +6,6 @@ export default function PrivateLayout({
 }>) {
   return (
     <div>
-        <h1>Private</h1>
         {children}
     </div>
   );

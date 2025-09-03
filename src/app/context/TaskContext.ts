@@ -1,3 +1,4 @@
+"use client";
 export interface TaskContextType {
     tasks: Task[];
     addTask: (task: Task) => void;
