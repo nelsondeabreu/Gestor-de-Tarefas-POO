@@ -28,6 +28,7 @@ export const handleLogin = async (data: UserLogin) => {
 export const handleLogout = async () => {
     try {
         await useAuth.logout();
+        window.location.reload();
     } catch (error) {
         throw new Error(`Erro ao fazer logout: ${error as string}`);
     }

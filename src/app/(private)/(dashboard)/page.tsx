@@ -1,33 +1,28 @@
 "use client";
-import { Task } from "@/app/context/TaskContext";
-import { getTasks } from "@/app/hooks/useTask";
 
-export default function Dashboard() {
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import DataTable from "@/app/components/ui/Table";
+import DialogAddTarefa from "@/app/components/ui/Dialog";
+
+export default function DashboardPage() {
   return (
-    <div>
-      <section className="sidebar w-72 border ">
-        side nav bar
-      </section>
-      <header>
-        <h1>Dashboard - Área Privada</h1>
-      </header>
-      <main>
-        <h1>Dashboard - Área Privada</h1>
-        <p>Bem-vindo à sua área privada!</p>
-        <h2>Suas Tarefas</h2>
-        <ul>
-          {getTasks().map((task: Task) => (
-            <li key={task.id}>
-              <h3>{task.title}</h3>
-              <p>{task.description}</p>
-            </li>
-          ))}
-        </ul>
-      </main>
+    <>
+      {/* Header com texto e botão */}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ mb: 3 }}
+      >
+        <Typography variant="h5" fontWeight="bold">
+          Minhas Tarefas
+        </Typography>
+        <DialogAddTarefa />
+      </Stack>
 
-      <footer>
-        <p>© 2023 - Seu App de Tarefas</p>
-      </footer>
-    </div>
+      {/* Tabela de tarefas */}
+      <DataTable />
+    </>
   );
 }
